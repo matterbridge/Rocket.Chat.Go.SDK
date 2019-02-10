@@ -1,8 +1,6 @@
 package realtime
 
 import (
-	"log"
-
 	"github.com/Jeffail/gabs"
 	"github.com/matterbridge/Rocket.Chat.Go.SDK/models"
 )
@@ -13,7 +11,7 @@ func (c *Client) GetChannelId(name string) (string, error) {
 		return "", err
 	}
 
-	log.Println(rawResponse)
+	//log.Println(rawResponse)
 
 	return rawResponse.(string), nil
 }

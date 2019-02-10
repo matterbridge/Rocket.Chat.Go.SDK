@@ -3,7 +3,6 @@ package realtime
 
 import (
 	"fmt"
-	"log"
 	"math/rand"
 	"net/url"
 	"strconv"
@@ -34,7 +33,7 @@ func NewClient(serverURL *url.URL, debug bool) (*Client, error) {
 
 	wsURL = fmt.Sprintf("%s://%v:%v%s/websocket", wsURL, serverURL.Hostname(), port, serverURL.Path)
 
-	log.Println("About to connect to:", wsURL, port, serverURL.Scheme)
+	//	log.Println("About to connect to:", wsURL, port, serverURL.Scheme)
 
 	c := new(Client)
 	c.ddp = ddp.NewClient(wsURL, serverURL.String())

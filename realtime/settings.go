@@ -1,8 +1,6 @@
 package realtime
 
 import (
-	"log"
-
 	"github.com/Jeffail/gabs"
 	"github.com/matterbridge/Rocket.Chat.Go.SDK/models"
 )
@@ -45,7 +43,7 @@ func (c *Client) GetPublicSettings() ([]models.Setting, error) {
 			}
 
 		default:
-			log.Println(setting.Type, rawSetting.Path("value").Data())
+			//	log.Println(setting.Type, rawSetting.Path("value").Data())
 		}
 
 		settings = append(settings, setting)

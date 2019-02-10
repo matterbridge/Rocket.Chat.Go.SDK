@@ -2,13 +2,12 @@ package realtime
 
 import (
 	"fmt"
-	"log"
 	"strconv"
 	"time"
 
 	"github.com/Jeffail/gabs"
-	"github.com/matterbridge/Rocket.Chat.Go.SDK/models"
 	"github.com/gopackage/ddp"
+	"github.com/matterbridge/Rocket.Chat.Go.SDK/models"
 )
 
 const (
@@ -171,7 +170,7 @@ func getMessagesFromUpdateEvent(update ddp.Update) []models.Message {
 	args, err := document.Children()
 
 	if err != nil {
-		log.Printf("Event arguments are in an unexpected format: %v", err)
+		//	log.Printf("Event arguments are in an unexpected format: %v", err)
 		return make([]models.Message, 0)
 	}
 
