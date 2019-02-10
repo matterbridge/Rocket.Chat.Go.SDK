@@ -34,12 +34,8 @@ func (c *Client) LoadHistory(roomId string) error {
 // takes channel and message
 //
 // https://rocket.chat/docs/developer-guides/realtime-api/method-calls/send-message
-func (c *Client) SendMessage(channel *models.Channel, text string) (*models.Message, error) {
-	m := models.Message{
-		ID:     c.newRandomId(),
-		RoomID: channel.ID,
-		Msg:    text,
-	}
+func (c *Client) SendMessage(m *models.Message) (*models.Message, error) {
+	m.ID = c.newRandomId()
 
 	rawResponse, err := c.ddp.Call("sendMessage", m)
 	if err != nil {
