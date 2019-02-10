@@ -3,7 +3,7 @@ package rest
 import (
 	"testing"
 
-	"github.com/RocketChat/Rocket.Chat.Go.SDK/models"
+	"github.com/matterbridge/Rocket.Chat.Go.SDK/models"
 	"github.com/stretchr/testify/assert"
 )
 

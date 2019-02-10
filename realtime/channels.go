@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/Jeffail/gabs"
-	"github.com/RocketChat/Rocket.Chat.Go.SDK/models"
+	"github.com/matterbridge/Rocket.Chat.Go.SDK/models"
 )
 
 func (c *Client) GetChannelId(name string) (string, error) {
