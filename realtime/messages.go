@@ -205,6 +205,8 @@ func getMessageFromDocument(arg *gabs.Container) *models.Message {
 				TitleLink:         stringOrZero(attachment.Path("title_link").Data()),
 				TitleLinkDownload: stringOrZero(attachment.Path("title_link_download").Data()),
 				ImageURL:          stringOrZero(attachment.Path("image_url").Data()),
+
+				AuthorName:        stringOrZero(arg.Path("u.name").Data()),
 			}
 		}
 	}
