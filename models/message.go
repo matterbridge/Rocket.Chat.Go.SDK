@@ -16,6 +16,9 @@ type Message struct {
 
 	Mentions []User `json:"mentions,omitempty"`
 	User     *User  `json:"u,omitempty"`
+
+	Attachments []Attachment `json:"attachments,omitempty"`
+
 	PostMessage
 
 	// Bot         interface{}  `json:"bot"`
