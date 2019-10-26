@@ -2,6 +2,7 @@ package realtime
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 	"time"
 
@@ -15,6 +16,8 @@ const (
 	send_added_event    = true
 	default_buffer_size = 100
 )
+
+var messageListenerAdded = false
 
 // NewMessage creates basic message with an ID, a RoomID, and a Msg
 // Takes channel and text
@@ -40,7 +43,6 @@ func (c *Client) LoadHistory(roomID string) ([]models.Message, error) {
 
 	document, _ := gabs.Consume(history["messages"])
 	msgs, err := document.Children()
-
 	if err != nil {
 		log.Printf("response is in an unexpected format: %v", err)
 		return make([]models.Message, 0), nil
@@ -52,7 +54,7 @@ func (c *Client) LoadHistory(roomID string) ([]models.Message, error) {
 		messages[i] = *getMessageFromDocument(arg)
 	}
 
-	//log.Println(messages)
+	// log.Println(messages)
 
 	return messages, nil
 }
@@ -184,8 +186,10 @@ func (c *Client) SubscribeToMessageStream(channel *models.Channel, msgChannel ch
 		return err
 	}
 
-	// msgChannel := make(chan models.Message, default_buffer_size)
-	c.ddp.CollectionByName("stream-room-messages").AddUpdateListener(messageExtractor{msgChannel, "update"})
+	if !messageListenerAdded {
+		c.ddp.CollectionByName("stream-room-messages").AddUpdateListener(messageExtractor{msgChannel, "update"})
+		messageListenerAdded = true
+	}
 
 	return nil
 }
